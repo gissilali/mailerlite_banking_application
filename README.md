@@ -21,13 +21,13 @@ Install NPM dependencies:
 
 ```sh
 cd mailerlite_banking_application/web
-npm install
+yarn install
 ```
 
 Build assets:
 
 ```sh
-npm run dev
+yarn run dev
 ```
 
 Setup configuration:

@@ -1,15 +1,67 @@
-# Test assignment
+# Banking Application
 
-For the test assignment, we have a partly finished banking application (created only for test assignment purposes), where one account can send money to another.
-This application is far from perfect, so we need you to fix and finish it by paying attention to these factors:
- * **Security** - we do not want to be hacked
- * **Best practices** - code should be clean and easy to maintain
- * **Documentation** - provide information on how to set up the project
- * **Tests** - test the parts that you feel necessary to
- * **Logic** - bank should not allow overspending your balance
+This is how to set up this app
 
-Authentication **IS NOT** in the scope of this assignment. Getting the transactions list with the request `GET /accounts/<id>/transactions` is not a security hole.
+## Installation
 
-Use this repository as your starting point but **DO NOT** fork it. Create a public repository on GitHub for your application source code, push it and send a link to jobs@mailerlite.com.
+Clone the repo locally:
 
-Code quality in this repository **DOES NOT** represent code quality in MailerLite.
+```sh
+git clone https://github.com/gissilali/mailerlite_banking_application.git mailerlite_banking_application
+```
+
+Install PHP dependencies:
+
+```sh
+cd mailerlite_banking_application/api
+composer install
+```
+
+Install NPM dependencies:
+
+```sh
+cd mailerlite_banking_application/web
+npm install
+```
+
+Build assets:
+
+```sh
+npm run dev
+```
+
+Setup configuration:
+
+```sh
+cp .env.example .env
+```
+
+Generate application key:
+
+```sh
+php artisan key:generate
+```
+
+Create an SQLite database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
+
+```sh
+touch database/database.sqlite
+```
+
+Run database migrations:
+
+```sh
+php artisan migrate
+```
+
+Run database seeder:
+
+```sh
+php artisan db:seed
+```
+
+Run the dev server (the output will give the address):
+
+```sh
+php artisan serve
+```

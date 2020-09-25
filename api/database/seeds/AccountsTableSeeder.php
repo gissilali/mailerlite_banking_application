@@ -1,24 +1,25 @@
 <?php
 
+namespace Database\Seeders;
+
+use App\Account;
+use App\Transaction;
 use Illuminate\Database\Seeder;
 
 class AccountsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        DB::table('accounts')->insert([
-            'name' => 'John',
-            'balance' => 15000
+        Account::truncate();
+        Transaction::truncate();
+        Account::create([
+            'name' => 'Gibson Silali',
+            'balance' => '2300'
         ]);
 
-        DB::table('accounts')->insert([
-            'name' => 'Peter',
-            'balance' => 100000
+        Account::create([
+            'name' => 'Wes Gibbons',
+            'balance' => '400'
         ]);
     }
 }

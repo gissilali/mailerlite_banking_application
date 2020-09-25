@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TransactionsTableSeeder extends Seeder
 {
@@ -11,25 +12,30 @@ class TransactionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('transactions')->insert([
-            'from' => 1,
-            'to' => 2,
-            'details' => 'sample transaction',
-            'amount' => 14
-        ]);
+        \App\Transaction::truncate();
+        $sampleTransactions = [
+            [
+                'from' => 1,
+                'to' => 2,
+                'details' => 'sample transaction',
+                'amount' => 14
+            ],
+            [
+                'from' => 1,
+                'to' => 2,
+                'details' => 'sample transaction 2',
+                'amount' => 24
+            ],
+            [
+                'from' => 2,
+                'to' => 1,
+                'details' => 'sample transaction 3',
+                'amount' => 15
+            ]
+        ];
+        foreach ($sampleTransactions as $sampleTransaction) {
+            \App\Transaction::create($sampleTransaction);
+        }
 
-        DB::table('transactions')->insert([
-            'from' => 1,
-            'to' => 2,
-            'details' => 'sample transaction 2',
-            'amount' => 24
-        ]);
-
-        DB::table('transactions')->insert([
-            'from' => 2,
-            'to' => 1,
-            'details' => 'sample transaction 3',
-            'amount' => 15
-        ]);
     }
 }

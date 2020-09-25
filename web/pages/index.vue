@@ -1,37 +1,43 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">
-        web
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+      <b-form>
+        <b-form-group
+          id="input-group-2"
+          label="Enter your account ID:"
+          label-for="input-2"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
+          <b-form-input
+            id="input"
+            type="number"
+            v-model="accountID"
+            required
+            placeholder="Account ID"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-button nuxt-link :to="'/accounts/' + accountID" variant="primary"
+          >Login</b-button
         >
-          GitHub
-        </a>
-      </div>
+      </b-form>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Vue from "vue";
+
+export default Vue.extend({
+  data() {
+    return {
+      accountID: 1
+    };
+  },
+  components: {}
+});
 </script>
 
-<style>
+<style scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -42,16 +48,8 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

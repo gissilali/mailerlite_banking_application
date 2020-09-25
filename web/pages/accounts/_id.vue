@@ -11,13 +11,15 @@
           <div>
             Balance:
             <code
-              >{{ account.currency === "usd" ? "$" : "€"
+            >{{
+                account.currency === "usd" ? "$" : "€"
               }}{{ account.balance }}</code
             >
           </div>
         </b-card-text>
         <b-button size="sm" variant="success" @click="show = !show"
-          >New payment</b-button
+        >New payment
+        </b-button
         >
 
         <b-button
@@ -26,12 +28,13 @@
           size="sm"
           nuxt-link
           to="/"
-          >Logout</b-button
+        >Logout
+        </b-button
         >
       </b-card>
 
       <b-card class="mt-3" header="New Payment" v-show="show">
-        <b-form @submit="onSubmit">
+        <b-form @submit.prevent="onSubmit">
           <b-form-group id="input-group-1" label="To:" label-for="input-1">
             <b-form-input
               id="input-1"
@@ -81,11 +84,12 @@ import axios from "axios";
 import Vue from "vue";
 
 export default {
+
   data() {
     return {
       show: false,
       payment: {},
-
+      formErrors: {},
       account: null,
       transactions: null,
 
@@ -100,58 +104,21 @@ export default {
 
   methods: {
     onSubmit(event) {
-      var that = this;
-
       event.preventDefault();
 
-      axios.post(
-        `${process.env.APP_URL}/api/accounts/${
-          this.$route.params.id
-        }/transactions`,
-
-        this.payment
-      );
-
-      that.payment = {};
-      that.show = false;
-
-      // update items
-      setTimeout(() => {
-        axios
-          .get(`${process.env.APP_URL}/api/accounts/${this.$route.params.id}`)
-          .then(function(response) {
-            if (!response.data.length) {
-              window.location = "/";
-            } else {
-              that.account = response.data[0];
-            }
-          });
-
-        axios
-          .get(
-            `${process.env.APP_URL}/api/accounts/${
-              that.$route.params.id
-            }/transactions`
-          )
-          .then(function(response) {
-            that["transactions"] = response.data;
-
-            var transactions = [];
-            for (let i = 0; i < that.transactions.length; i++) {
-              that.transactions[i].amount =
-                (that.account.currency === "usd" ? "$" : "€") +
-                that.transactions[i].amount;
-
-              if (that.account.id != that.transactions[i].to) {
-                that.transactions[i].amount = "-" + that.transactions[i].amount;
-              }
-
-              transactions.push(that.transactions[i]);
-            }
-
-            that.transactions = transactions;
-          });
-      }, 200);
+      axios.post(`${process.env.APP_URL}/api/accounts/${this.$route.params.id}/transactions`, this.payment)
+        .then(({data, status}) => {
+          this.payment = {};
+          this.show = false;
+          //update items
+          this.getAccount();
+          this.getTransactions();
+        })
+        .catch(({response}) => {
+          if (response.status === 422) {
+              this.formErrors = response.data.errors;
+          }
+        });
     },
     getAccount() {
       axios
@@ -160,10 +127,10 @@ export default {
           if (status === 200) {
             this.account = data.data;
             if (data.data) {
-                this.account = data.data;
-                if(this.account && this.transactions) {
-                  this.loading = false;
-                }
+              this.account = data.data;
+              if (this.account && this.transactions) {
+                this.loading = false;
+              }
             } else {
               window.location = "/";
             }

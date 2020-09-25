@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('accounts/{id}', [\App\Http\Controllers\AccountController::class, 'show'])->name('accounts.show');
+
+Route::get('accounts/{id}/transactions', [\App\Http\Controllers\TransactionController::class, 'index'])->name('transactions.index');
+
+Route::post('accounts/{id}/transactions', [\App\Http\Controllers\TransactionController::class, 'store'])->name('transactions.store');
+
+Route::get('currencies', 'GetCurrency');

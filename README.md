@@ -10,6 +10,10 @@ Clone the repo locally:
 git clone https://github.com/gissilali/mailerlite_banking_application.git mailerlite_banking_application
 ```
 
+The frontend which is located in ``mailerlite_banking_application/web``
+ 
+The backend api is located in ``mailerlite_banking_application/api``
+
 Install PHP dependencies:
 
 ```sh
@@ -45,23 +49,26 @@ php artisan key:generate
 Create an SQLite database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
 
 ```sh
-touch database/database.sqlite
+touch mailerlite_banking_application/api/database/database.sqlite
 ```
 
 Run database migrations:
 
 ```sh
+cd mailerlite_banking_application/api
 php artisan migrate
 ```
 
 Run database seeder:
 
 ```sh
+cd mailerlite_banking_application/api
 php artisan db:seed
 ```
 
 Run the dev server (the output will give the address):
 
 ```sh
+cd mailerlite_banking_application/api/
 php artisan serve
 ```

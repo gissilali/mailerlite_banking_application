@@ -1,6 +1,4 @@
-# ybank
-
-> ybank - frontend
+# web
 
 ## Build Setup
 

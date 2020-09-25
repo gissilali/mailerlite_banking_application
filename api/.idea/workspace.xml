@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa641094-0c2d-459d-9627-d060b5f9f1ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../web/nuxt.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../web/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../web/pages/accounts/_id.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/pages/accounts/_id.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../web/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../web/yarn.lock" afterDir="false" />
@@ -160,7 +161,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600987205933</updated>
       <workItem from="1600987206957" duration="11125000" />
-      <workItem from="1601001266642" duration="1461000" />
+      <workItem from="1601001266642" duration="2455000" />
     </task>
     <servers />
   </component>

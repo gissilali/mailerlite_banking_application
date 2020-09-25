@@ -40,6 +40,7 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dayjs'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

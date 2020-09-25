@@ -81,7 +81,6 @@
 
 <script>
 import axios from "axios";
-import Vue from "vue";
 
 export default {
 
@@ -142,7 +141,13 @@ export default {
         .get(`${process.env.APP_URL}/api/accounts/${this.$route.params.id}/transactions`)
         .then(({data, status}) => {
           if (status === 200) {
-            this.transactions = data.data;
+            if (data.data != null) {
+              this.transactions = data.data.map((transaction) =>{
+                transaction.created_at = this.$dayjs(transaction.created_at).format('DD MMM, YYYY HH:mm')
+                transaction.updated_at = this.$dayjs(transaction.updated_at).format('DD MMM, YYYY HH:mm')
+                return transaction;
+              });
+            }
           }
         })
     }

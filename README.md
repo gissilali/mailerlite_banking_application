@@ -66,6 +66,7 @@ cd mailerlite_banking_application/api
 php artisan db:seed
 ```
 
+
 Run the dev server (the output will give the address): 
 
 ```sh

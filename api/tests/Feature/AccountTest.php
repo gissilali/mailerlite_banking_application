@@ -36,6 +36,31 @@ class AccountTest extends TestCase
         $this->assertTrue($validation->fails());
     }
 
+    public function testCustomerCanWithdrawWithSufficientBalance()
+    {
+        $this->withoutExceptionHandling();
+        $senderAccount = Account::factory()->create([
+            'balance' => 10
+        ]);
+        $receiverAccount = Account::factory()->create();
+
+        $rules = [
+            'amount' => [
+                new AccountBalanceRule($senderAccount)
+            ]
+        ];
+
+        $data = Transaction::factory()->make([
+            'from' => $senderAccount->id,
+            'to' => $receiverAccount->id,
+            'amount' => 10
+        ]);
+
+        $validation = $this->app['validator']->make($data->toArray(), $rules);
+
+        $this->assertTrue($validation->passes());
+    }
+
     public function testAccountBalanceIsCorrectAfterTransaction()
     {
         $this->withoutExceptionHandling();

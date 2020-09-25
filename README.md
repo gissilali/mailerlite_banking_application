@@ -10,7 +10,7 @@ Clone the repo locally:
 git clone https://github.com/gissilali/mailerlite_banking_application.git mailerlite_banking_application
 ```
 
-The frontend which is located in ``mailerlite_banking_application/web``
+The frontend nuxt app is located in ``mailerlite_banking_application/web``
  
 The backend api is located in ``mailerlite_banking_application/api``
 
@@ -28,19 +28,19 @@ cd mailerlite_banking_application/web
 yarn install
 ```
 
-Build assets:
+Build assets on the frontend nuxt app:
 
 ```sh
 yarn run dev
 ```
 
-Setup configuration:
+Setup configuration on the backend api:
 
 ```sh
 cp .env.example .env
 ```
 
-Generate application key:
+Generate application key on the backend ap:
 
 ```sh
 php artisan key:generate
@@ -66,9 +66,14 @@ cd mailerlite_banking_application/api
 php artisan db:seed
 ```
 
-Run the dev server (the output will give the address):
+Run the dev server (the output will give the address): 
 
 ```sh
 cd mailerlite_banking_application/api/
 php artisan serve
+```
+
+copy the address above and update the ```.env```  file for the frontend nuxt app accordingly
+```
+    APP_URL=http://localhost:8000
 ```

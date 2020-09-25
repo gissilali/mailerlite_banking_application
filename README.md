@@ -40,6 +40,12 @@ Setup configuration on the backend api:
 cp .env.example .env
 ```
 
+Setup configuration on the frontend nuxt app:
+
+```sh
+cp .env.example .env
+```
+
 Generate application key on the backend ap:
 
 ```sh
